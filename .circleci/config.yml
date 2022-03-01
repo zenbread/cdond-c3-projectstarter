@@ -173,11 +173,11 @@ jobs:
       - run:
           name: Check inventory
           command: |
-            cat inventory.txt
+            ls
       - run:
           name: Install dependencies
           command: |
-            apk add --update ansible tar gzip
+            apk add --update ansible tar gzip awscli
       - run:
           name: Configure server
           command: |
