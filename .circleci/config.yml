@@ -35,7 +35,7 @@ commands:
 jobs:
   build-frontend:
     docker:
-      - image: circleci/node:17.6.0
+      - image: circleci/node
     steps:
       - checkout
       - restore_cache:
@@ -51,7 +51,7 @@ jobs:
 
   build-backend:
     docker:
-      - image: circleci/node:17.6.0
+      - image: circleci/node
     steps:
       - checkout
       - restore_cache:
