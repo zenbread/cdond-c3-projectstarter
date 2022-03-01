@@ -150,7 +150,7 @@ jobs:
       - run:
           name: Add back-end ip to ansible inventory
           command: |
-            echo "[all]" > inventory.txt
+            echo "[web]" > inventory.txt
             aws ec2 describe-instances \
             --query 'Reservations[*].Instances[*].PublicIpAddress' \
             --output text >> inventory.txt
@@ -170,6 +170,10 @@ jobs:
           fingerprints: ["73:25:74:0c:b6:1f:f0:2a:4f:bb:39:5c:cf:bd:02:b2"]
       - attach_workspace:
           at: ~/
+      - run:
+          name: Check inventory
+          command: |
+            cat inventory.txt
       - run:
           name: Install dependencies
           command: |
