@@ -211,7 +211,7 @@ jobs:
             fi
             pwd
             cat result.txt
-      - destroy_environment
+      - destroy-environment
       # - revert-migrations
       
 
