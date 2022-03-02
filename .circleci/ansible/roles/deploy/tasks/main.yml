@@ -1,0 +1,16 @@
+---
+- name: folders
+  file:
+    path: ~/backend
+    state: directory
+
+- name: unzip backend
+  unarchive:
+    src: backend.tar.gz
+    dest: ~/backend
+
+- name: start server
+  shell: |
+    cd ~/backend
+    pm2 stop default
+    pm2 start npm -- start
