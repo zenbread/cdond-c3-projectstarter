@@ -15,6 +15,7 @@ commands:
     description: Revert the last migration if successfully run in the current workflow.   
     steps:
       - run:
+          when: on_fail
           name: Revert migrations
           command: |
             SUCCESS=$(cat result.txt)
@@ -227,8 +228,8 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            apt update
-            apt install -y awscli
+            sudo apt update
+            sudo apt install -y awscli
       - run:
           name: Get backend url
           command: |
@@ -261,8 +262,8 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            apt update
-            apt install -y awscli ansible npm
+            sudo apt update
+            sudo apt install -y awscli ansible npm
       - run:
           name: install npm packages on backend
           working_directory: backend
