@@ -195,8 +195,8 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            apt update
-            apt install -y awscli
+            sudo apt update
+            sudo apt install -y awscli
       - run:
           name: Run migrations
           command: |
@@ -223,24 +223,31 @@ jobs:
 
 #   deploy-frontend:
 #     docker:
-#       # Docker image here that supports AWS CLI
+#       - image: circleci/node:13.8.0
 #     steps:
 #       # Checkout code from git
+#       - checkout
 #       - run:
 #           name: Install dependencies
 #           command: |
-#             # your code here
+#             apt update
+#             apt install -y awscli
 #       - run:
 #           name: Get backend url
 #           command: |
-#             # your code here
+#             BACKEND_IP=$(cat .circleci/ansible/inventory.txt | tail -n 1)
 #             export API_URL="http://${BACKEND_IP}:3030"
 #             echo "${API_URL}"
+#             echo API_URL=${API_URL} >> fontend/.env
 #       - run:
 #           name: Deploy frontend objects
 #           command: |
-#             # your code here
-#       # Here's where you will add some code to rollback on failure      
+#             npm install
+#             npm run build
+#             tar -czvf artifact-"${CIRCLE_WORKFLOW_ID:0:7}".tar.gz dist
+#             aws s3 cp dist s3://udapeople-${CIRCLE_WORKFLOW_ID:0:7} --recursive
+      # - destroy-environment
+      # - revert-migrations  
                     
 #   deploy-backend:
 #     docker:
