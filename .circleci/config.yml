@@ -277,9 +277,8 @@ jobs:
             npm run build
       - run:
           name: zip backend directory
-          working_directory: backend
           command: |
-            tar -czvf backend.tar.gz backend
+            tar -C backend -czvf backend.tar.gz .
             mkdir -p .circleci/ansible/roles/deploy/files
             mv backend.tar.gz .circleci/ansible/roles/deploy/files
       - run:
