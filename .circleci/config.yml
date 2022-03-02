@@ -149,6 +149,7 @@ jobs:
       #         --parameter-overrides ID="${CIRCLE_WORKFLOW_ID:0:7}"  
       - run:
           name: Add back-end ip to ansible inventory
+          working_directory: .circleci/ansible
           command: |
             echo "[web]" > inventory.txt
             aws ec2 describe-instances \
@@ -156,9 +157,9 @@ jobs:
             --output text >> inventory.txt
             cat inventory.txt
       - persist_to_workspace:
-          root: .circleci/ansible/
+          root: .
           paths:
-            - inventory.txt
+            - .circleci/ansible/inventory.txt
       - destroy-environment   
 
   configure-infrastructure:
@@ -169,11 +170,11 @@ jobs:
       - add_ssh_keys:
           fingerprints: ["73:25:74:0c:b6:1f:f0:2a:4f:bb:39:5c:cf:bd:02:b2"]
       - attach_workspace:
-          at: ~/
+          at: .
       - run:
           name: Check inventory
           command: |
-            ls
+            cat .circleci/ansible/inventory.txt
       - run:
           name: Install dependencies
           command: |
