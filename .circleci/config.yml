@@ -213,7 +213,6 @@ jobs:
               echo '0' > result.txt
             fi
             pwd
-            cat result.txt
       # - persist_to_workspace:
       #     root: .
       #     paths:
