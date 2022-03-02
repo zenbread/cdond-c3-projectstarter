@@ -14,6 +14,8 @@ commands:
   revert-migrations:
     description: Revert the last migration if successfully run in the current workflow.   
     steps:
+      - attach_workspace:
+          at: .
       - run:
           when: on_fail
           name: Revert migrations
