@@ -173,7 +173,7 @@ jobs:
       - run:
           name: Check inventory
           command: |
-            ls ~/
+            find ~ -name inventory.txt
       - run:
           name: Install dependencies
           command: |
