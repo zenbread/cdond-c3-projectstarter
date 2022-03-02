@@ -212,15 +212,11 @@ jobs:
             else
               echo '0' > result.txt
             fi
-            pwd
-            ls -la
-            ls -la backend
-            return 1
-            
+
       - persist_to_workspace:
           root: .
           paths:
-            - backend/result.txt
+            - result.txt
       - destroy-environment
       - revert-migrations
       
