@@ -17,7 +17,6 @@ commands:
       - run:
           name: Revert migrations
           command: |
-            cd backend
             SUCCESS=$(cat result.txt)
             if(( $SUCCESS==1 )); 
             then
@@ -206,13 +205,12 @@ jobs:
       - run:
           name: Send migration results to memstash
           command: |
-            if grep -q "has been executed successfully." migrations.txt
+            if grep -q "has been executed successfully." backend/migrations.txt
             then
               echo '1' > result.txt
             else
               echo '0' > result.txt
             fi
-            pwd
       # - persist_to_workspace:
       #     root: .
       #     paths:
