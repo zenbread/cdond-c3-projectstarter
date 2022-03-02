@@ -173,7 +173,7 @@ jobs:
       - run:
           name: Check inventory
           command: |
-            find ~ -name inventory.txt
+            cat .circleci/ansible/inventory.txt
       - run:
           name: Install dependencies
           command: |
