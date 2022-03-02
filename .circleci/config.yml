@@ -255,7 +255,7 @@ jobs:
                     
   deploy-backend:
     docker:
-      - image: python:3.7
+      - image: python
     steps:
       - checkout
       - add_ssh_keys:
@@ -268,7 +268,8 @@ jobs:
           name: Install dependencies
           command: |
             apt update
-            apt install -y awscli ansible npm
+            apt install -y npm
+            pip3 install --no-cache-dir awscli ansible
       - run:
           name: install npm packages on backend
           working_directory: backend
