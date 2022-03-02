@@ -212,10 +212,10 @@ jobs:
             else
               echo '0' > result.txt
             fi
-      # - persist_to_workspace:
-      #     root: .
-      #     paths:
-      #       - backend/result.txt
+      - persist_to_workspace:
+          root: .
+          paths:
+            - backend/result.txt
       - destroy-environment
       - revert-migrations
       
@@ -274,6 +274,7 @@ jobs:
             npm run build
       - run:
           name: zip backend directory
+          working_directory: backend
           command: |
             tar -czvf backend.tar.gz backend
             mkdir -p .circleci/ansible/roles/deploy/files
@@ -282,9 +283,11 @@ jobs:
           name: 
           working_directory: .circleci/ansible
           command: |
+            echo "Contents  of the inventory.txt file is -------"
+            cat inventory.txt
             ansible-playbook -i inventory.txt deploy-backend.yml
       - destroy-environment
-      - revert-migrations  
+      - revert-migrations
 
 #   smoke-test:
 #     docker:
