@@ -402,9 +402,9 @@ jobs:
       steps:
         - checkout
         - run:
-          name: Install tar and gzip
-          command: |
-            yum install -y tar gzip
+            name: Install tar and gzip
+            command: |
+              yum install -y tar gzip
         - attach_workspace:
             at: .
         - run:
