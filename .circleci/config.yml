@@ -407,14 +407,11 @@ jobs:
         - attach_workspace:
             at: .
         - run:
-            name: Get old stack workflow id
+            name: Remove old stacks and files
             command: |
               cat old_workflow.txt
               export OldWorkflowID=$(cat old_workflow.txt)
               echo $OldWorkflowID
-        - run:
-            name: Remove old stacks and files
-            command: |
               if [[ "${CIRCLE_WORKFLOW_ID:0:7}" != "${OldWorkflowID}" ]]
               then
                 aws s3 rm "s3://udapeople-${OldWorkflowID}" --recursive
