@@ -388,7 +388,7 @@ jobs:
           paths: 
             - ~/old_workflow.txt
       - destroy-environment:
-          workflowId: ${CIRCLE_WORKFLOW_ID:0:7}
+          workflow_id: ${CIRCLE_WORKFLOW_ID:0:7}
       - revert-migrations
 
 cleanup:
