@@ -375,7 +375,6 @@ jobs:
             list-exports --query "Exports[?Name==\`WorkflowID\`].Value" \
             --no-paginate --output text)
             echo $OldWorkflowID > old_workflow.txt
-            pwd
       # - run:
       #     name: Update cloudfront distribution
       #     working_directory: .circleci/files
@@ -409,6 +408,8 @@ jobs:
         - run:
             name: Get old stack workflow id
             command: |
+              pwd
+              ls
               export OldWorkflowID=$(cat old_workflow.txt)
               echo $OldWorkflowID
         # - run:
