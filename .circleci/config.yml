@@ -410,7 +410,7 @@ jobs:
         - run:
             name: Get old stack workflow id
             command: |
-              export OldWorkflowID=$(cat ~/old_workflow.txt)
+              export OldWorkflowID=$(cat old_workflow.txt)
               echo $OldWorkflowID
         # - run:
         #     name: Remove old stacks and files
