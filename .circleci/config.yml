@@ -375,7 +375,7 @@ jobs:
       - run:
           name: Update cloudfront distribution
           working_directory: .circleci/files
-          command: >
+          command: |
             aws cloudformation deploy \
             --template-file cloudfront.yml \
             --stack-name InitialStack \
