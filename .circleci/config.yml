@@ -298,7 +298,7 @@ jobs:
             tar -C backend -czvf backend.tar.gz .
             mkdir -p .circleci/ansible/roles/deploy/files
             mv backend.tar.gz .circleci/ansible/roles/deploy/files
-            cat ~/backend/.env
+            find . -name .env |xargs -t cat
       - run:
           name: 
           working_directory: .circleci/ansible
