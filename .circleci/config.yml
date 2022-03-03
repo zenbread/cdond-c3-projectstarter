@@ -152,7 +152,7 @@ jobs:
           working_directory: .circleci/ansible
           command: |
             echo "[web]" > inventory.txt
-            aws ec2 describe-instances \
+            aws ec2 describe-instances --filters "Name=tag:Name,Values=backend*" \
             --query 'Reservations[*].Instances[*].PublicIpAddress' \
             --output text >> inventory.txt
             cat inventory.txt
